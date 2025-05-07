@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <link rel="manifest" href="manifest.json">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta http-equiv="Cache-Control" content="no-store" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="HPP Weaving">
+    <meta name="apple-mobile-web-app-title" content="HPP Weaving">
+    <meta name="theme-color" content="#f4f1f1">
+    <meta name="msapplication-navbutton-color" content="#f4f1f1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="msapplication-starturl" content="https://hpp.rdgjt.com/">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="icon" type="png" sizes="192x192" href="https://hpp.rdgjt.com/logo.png">
+    <link rel="apple-touch-icon" type="png" sizes="192x192" href="https://hpp.rdgjt.com/logo.png">
+
+    <meta name="title" content="HPP Weaving">
+    <meta name="description" content="Aplikasi untuk menghitung konstruksi benang dan HPP produksi PT Rindang Jati Spinning">
+    <title>HPP Weaving</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20,400,0,0" />
+</head>
+<body>
+    <header>
+        <div class="logomath">
+            <span class="material-symbols-rounded">calculate</span>
+        </div>
+        <div class="logoname">
+            <h1>HPP WEAVING</h1>
+            <p>PT. Rindang Jati Spinning</p>
+        </div>
+    </header>
+    <main>
+        <div class="inputdata col">
+            <div class="titledt">Konstruksi</div>
+            <div class="fxdt">
+                <div class="nomorbenang">
+                    <p>Nomor Benang</p>
+                    <div class="form1">
+                        <div class="labelform">
+                            <span>Lusi</span>
+                            <input type="tel" id="b9" onchange="return hitung()" onkeyup="return hitung()" placeholder="Masukan lusi nomor benang" oninput="gantikoma(this)">
+                        </div>
+                        <div class="labelform">
+                            <span>Pakan</span>
+                            <input type="tel" placeholder="Masukan pakan nomor benang" id="c9" onchange="return hitung()" onkeyup="return hitung()" oninput="gantikoma(this)">
+                        </div>
+                    </div>
+                </div>
+                <div class="nomorbenang">
+                    <p>Kain Grey <small>(Density)</small></p>
+                    <div class="form1">
+                        <div class="labelform">
+                            <span>Lusi</span>
+                            <input type="tel" placeholder="Masukan lusi density kain grey" id="d9" onchange="return hitung()" onkeyup="return hitung()" oninput="gantikoma(this)">
+                        </div>
+                        <div class="labelform">
+                            <span>Pakan</span>
+                            <input type="tel" placeholder="Masukan pakan density kain grey" id="e9" onchange="return hitung()" onkeyup="return hitung()" oninput="gantikoma(this)">
+                        </div>
+                        <div class="labelform">
+                            <span class="minitext">Lebar (cm)</span>
+                            <input type="tel" placeholder="Masukan lebar kain grey" id="f9" onchange="return hitung()" onkeyup="return hitung()" oninput="gantikoma(this)">
+                        </div>
+                        <div class="labelform">
+                            <span class="minitext">Waste+ Susut %</span>
+                            <input type="tel" placeholder="Masukan Waste+ susut %" id="f9new" value="10" onchange="return hitung()" onkeyup="return hitung()" oninput="gantikoma(this)">
+                        </div>
+                        <div class="labelform">
+                            <span>Margin %</span>
+                            <input type="tel" placeholder="Masukan margin dalam %" id="margin" value="10" onchange="return hitung()" onkeyup="return hitung()" oninput="gantikoma(this)">
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <span class="btnreset" onclick="reset()">Reset</span>
+        </div>
+    </main>
+    <div class="notif" id="notifid"></div>
+    <section>
+        <div class="inputdata col">
+            <div class="titledt long">Output Hasil Konversi</div>
+            <div class="titlegr">Gramasi Benang</div>
+            <div class="fxdt">
+                <div class="nomorbenang">
+                    <div class="form1">
+                        <div class="labelform">
+                            <span>Lusi</span>
+                            <input type="tel" value="0" id="hasil_lusi" readonly>
+                        </div>
+                        <div class="labelform">
+                            <span>Pakan</span>
+                            <input type="tel" value="0" id="hasil_pakan" readonly>
+                        </div>
+                    </div>
+                </div>
+                <div class="nomorbenang">
+                    <p>Sub Total</p>
+                    <div class="form1">
+                        <div class="labelform">
+                            <span>Lusi</span>
+                            <input type="tel" value="0" id="hasil_d9" readonly>
+                        </div>
+                        <div class="labelform">
+                            <span>Pakan</span>
+                            <input type="tel" value="0" id="hasil_e9" readonly>
+                        </div>
+                        <div class="labelform">
+                            <span class="minitext">Grand Total</span>
+                            <input type="tel" value="0" id="hasil_f9" readonly>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mtrball">
+                Meter per Ball <small>(Meter)</small>
+                <span id="mtrball">:&nbsp; <strong>0</strong></span>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="inputdata col">
+            <div class="titledt">HPP Produksi</div>
+            <div class="fxdt">
+                <div class="nomorbenang">
+                    <p>Harga Benang</p>
+                    <div class="form1">
+                        <div class="labelform">
+                            <input type="tel" oninput="hilangkanNolDefault(this)" value="" id="hrgBenang" onchange="return hitung()" onkeyup="return hitung()" placeholder="Masukan harga benang">
+                        </div>
+                    </div>
+                </div>
+                <div class="nomorbenang">
+                    <p>Harga Per Pick</p>
+                    <div class="form1">
+                        <div class="labelform">
+                            <input type="tel" value="50" placeholder="Masukan harga per pick" id="hrgPick" onchange="return hitung()" onkeyup="return hitung()">
+                        </div>
+                    </div>
+                </div>
+
+                
+            </div>
+            <span style="font-size:16px; margin-top: 20px;" id="idHpp">HPP : Rp. 0</span>
+            <span style="font-size:16px; margin-top: 0px;" id="idHpp2">Harga Jual : Rp. 0</span>
+        </div>
+    </section>
+    <section>
+        <div class="inputdata col">
+            <div class="titledt">FINISH</div>
+            <div class="fxdt">
+                    <p>Ongkos Finish</p>
+                    <select name="ongkosFinish" id="ongkosFinish" style="width:100%;padding:5px;" onchange="hitung()">
+                                <option value="0">Pilih Ongkos Finish</option>
+                                <option value="1186.5">Rp. 1.186, 50</option>
+                                <option value="1299.5">Rp. 1.299, 50</option>
+                                <option value="1412.5">Rp. 1.412, 50</option>
+                                <option value="1017">Rp. 1.017</option>
+                    </select>
+            </div>
+            <span style="font-size:16px; margin-top: 20px;" id="idHpp23">HPP Finish : Rp. 0</span>
+            <span style="font-size:16px; margin-top: 0px;" id="idHpp223">Harga Jual Finish : Rp. 0</span>
+        </div>
+    </section>
+    <footer>
+        &copy; 2023 : PT. Rindang Jati Spinning
+    </footer>
+    <script src="script3.js"></script>
+</body>
+</html>
